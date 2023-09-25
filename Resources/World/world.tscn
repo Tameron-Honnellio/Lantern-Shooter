@@ -1,25 +1,39 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctg2xilv2uhps"]
+[gd_scene load_steps=7 format=3 uid="uid://ctg2xilv2uhps"]
 
 [ext_resource type="Script" path="res://Resources/World/World.cs" id="1_a70xb"]
+[ext_resource type="PackedScene" uid="uid://73x7d8v2aeoi" path="res://Resources/Player/Player.tscn" id="2_iqxa3"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_xljv2"]
-size = Vector3(60, 2, 60)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_232yn"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_lmelc"]
-size = Vector3(60, 2, 60)
+[sub_resource type="Sky" id="Sky_1fufi"]
+sky_material = SubResource("ProceduralSkyMaterial_232yn")
+
+[sub_resource type="Environment" id="Environment_h3obc"]
+background_mode = 2
+sky = SubResource("Sky_1fufi")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m18o6"]
+albedo_color = Color(0.662745, 0.615686, 0.862745, 1)
 
 [node name="World" type="Node"]
 script = ExtResource("1_a70xb")
 
-[node name="Ground" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
-shape = SubResource("BoxShape3D_xljv2")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
-mesh = SubResource("BoxMesh_lmelc")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 22, 0)
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 22, 0)
 shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h3obc")
+
+[node name="Ground" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+use_collision = true
+collision_mask = 6
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_m18o6")
+
+[node name="Player" parent="." instance=ExtResource("2_iqxa3")]
