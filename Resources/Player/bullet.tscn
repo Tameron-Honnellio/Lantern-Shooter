@@ -17,6 +17,7 @@ height = 0.4
 script = ExtResource("1_n7nxm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+cast_shadow = 0
 mesh = SubResource("SphereMesh_0juy6")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
