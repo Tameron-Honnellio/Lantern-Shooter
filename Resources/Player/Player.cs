@@ -3,57 +3,75 @@ using System;
 
 public partial class Player : CharacterBody3D
 {
-	// player walk speed, exported to editor
+	// Player walk speed, exported to editor
 	[Export]
 	public const float Speed = 15.0f;
-	// player jump velocity, exported to editor
+	// Player jump velocity, exported to editor
 	[Export]
 	public const float JumpVelocity = 4.5f;
-	// camera sensitivity, exported to editor
+	// Camera sensitivity, exported to editor
 	[Export]
 	public const float lookSensitivity = 0.005f;
 
-	// gravity variable for the player character, exported to editor
+	// Gravity field for the player character, exported to editor
 	[Export]
 	public const float gravity = 9.8f;
-	// Node3D variable for controlling rotations from user input (left and right)
+	// Node3D field for controlling rotations from user input (left and right)
 	Node3D head;
-	// Camera3D variable for controlling rotations from user input (up and down)
+	// Camera3D field for controlling rotations from user input (up and down)
 	Camera3D camera;
-	// helper variable for clamping camera rotation
+	// Helper field for clamping camera rotation
 	Vector3 cameraRot;
-	// AnimationPlayer variable for playing the shoot animation
+	// AnimationPlayer field for playing the shoot animation
 	AnimationPlayer shootAnim;
+	// RayCast3D field for the lantern's bullet spawnpoint
+	RayCast3D bulletSpawn;
+	// Field for loading and holding the bullet scene
+	PackedScene bulletLoad;
+	// Field for instantiating and adding a new bullet to the scene tree
+	bullet newBullet;
+	// Field to help set global rotation of bullet
+	Transform3D bulletRotHelp;
 
-	// called when node enters scene tree for the first time
+	// Called when node enters scene tree for the first time
     public override void _Ready()
     {
-		// lock mouse, and disable visible cursor
+		// Lock mouse, and disable visible cursor
         Input.MouseMode = Input.MouseModeEnum.Captured;
-		// set head to Head node in Godot scene
+		// Set head to Head node in player scene
 		head = GetNode<Node3D>("Head");
-		// set camera to Camera3D node in Godot scene
+		// Set camera to Camera3D node in player scene
 		camera = GetNode<Camera3D>("Head/Camera3D");
-		// set shootAnim to AnimationPlayer node in Godot scene
+		// Set shootAnim to AnimationPlayer node in lantern scene
 		shootAnim = GetNode<AnimationPlayer>("Head/Camera3D/Lantern/AnimationPlayer");
+		// Set bulletSpawn to RayCast3D node in the lantern scene
+		bulletSpawn = GetNode<RayCast3D>("Head/Camera3D/Lantern/RayCast3D");
+		// Store bullet.tscn PackedScene in bulletLoad field
+		bulletLoad = (PackedScene)ResourceLoader.Load("res://Resources/Player/bullet.tscn");
     }
-	// called when input is detected
+	// Called when input is detected
     public override void _Input(InputEvent @event)
 	{
-		// if mouse motion detected then rotate the camera to match it
+		// If mouse motion detected then rotate the camera to match it
 		if (@event is InputEventMouseMotion mouseMotion)
 		{
-			// rotate head left and right about the y-axis
+			// Rotate head left and right about the y-axis
 			head.RotateY(-mouseMotion.Relative.X * lookSensitivity);
-			// rotate camera up and down about the x-axis
+			// Rotate camera up and down about the x-axis
 			camera.RotateX(-mouseMotion.Relative.Y * lookSensitivity);
-			// clamp camera angle between -40 down and 70 degrees up
+			// Clamp camera angle between -40 down and 70 degrees up
 			cameraRot = camera.RotationDegrees;
 			cameraRot.X = Mathf.Clamp(cameraRot.X, -40, 70);
 			camera.RotationDegrees = cameraRot;
 		}
+
+		// Check if player pressed escape
+		if (Input.IsActionJustPressed("escape")) {
+			// Quit game
+			GetTree().Quit();
+		}
 	}
-	// called every frame
+	// Called every frame
 	public override void _PhysicsProcess(double delta)
 	{
 		// velocity = global velocity of characterbody
@@ -69,7 +87,7 @@ public partial class Player : CharacterBody3D
 
 		// Get the input direction and handle the movement/deceleration.
 		Vector2 inputDir = Input.GetVector("left", "right", "up", "down");
-		// Move in the direction the head is facing
+		// Move with respect to the direction the head is facing
 		Vector3 direction = (head.Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
 		if (direction != Vector3.Zero)
 		{
@@ -82,19 +100,25 @@ public partial class Player : CharacterBody3D
 			velocity.Z = Mathf.MoveToward(Velocity.Z, 0, Speed);
 		}
 
-		// global velocity = updated velocity
+		// Global velocity = updated velocity
 		Velocity = velocity;
 
-		// check if the player tried to shoot
+		// Check if the player tried to shoot
 		if (Input.IsActionJustPressed("shoot")) {
-			// if shoot animation is not playing
+			// If shoot animation is not playing
 			if (!shootAnim.IsPlaying()) {
-				// play shoot animation
+				// Play shoot animation
 				shootAnim.Play("Shoot");
+				// Instantiate newBullet as type bullet
+				newBullet = (bullet)bulletLoad.Instantiate();
+				// Set rotation and position of newBullet to global bulletSpawn rotation and position (account for player movement)
+				newBullet.Transform = bulletSpawn.GlobalTransform;
+				// Add bullet to the parent scene of player (level / world)
+				GetParent().AddChild(newBullet);
 			}
 		}
 
-		// move characterbody with respect to new velocity
+		// Move characterbody with respect to new velocity
 		MoveAndSlide();
 	}
 }

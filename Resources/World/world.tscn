@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctg2xilv2uhps"]
+[gd_scene load_steps=13 format=3 uid="uid://ctg2xilv2uhps"]
 
 [ext_resource type="Script" path="res://Resources/World/World.cs" id="1_a70xb"]
 [ext_resource type="PackedScene" uid="uid://73x7d8v2aeoi" path="res://Resources/Player/player.tscn" id="2_iqxa3"]
@@ -19,6 +19,24 @@ glow_enabled = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m18o6"]
 albedo_color = Color(0.662745, 0.615686, 0.862745, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a6il7"]
+albedo_color = Color(0.556863, 0.294118, 0.231373, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5hr3r"]
+albedo_color = Color(0.556863, 0.294118, 0.231373, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1evy8"]
+albedo_color = Color(0.556863, 0.294118, 0.231373, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdeiq"]
+albedo_color = Color(0.556863, 0.294118, 0.231373, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxhva"]
+albedo_color = Color(0.407843, 0.556863, 0.788235, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76rb5"]
+albedo_color = Color(0.494118, 0.737255, 0.47451, 1)
+
 [node name="World" type="Node"]
 script = ExtResource("1_a70xb")
 
@@ -37,3 +55,47 @@ size = Vector3(100, 1, 100)
 material = SubResource("StandardMaterial3D_m18o6")
 
 [node name="Player" parent="." instance=ExtResource("2_iqxa3")]
+
+[node name="Wall" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
+use_collision = true
+collision_mask = 7
+size = Vector3(100, 3, 1)
+material = SubResource("StandardMaterial3D_a6il7")
+
+[node name="Wall2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
+use_collision = true
+collision_mask = 7
+size = Vector3(100, 3, 1)
+material = SubResource("StandardMaterial3D_5hr3r")
+
+[node name="Wall3" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 50, 0, 0)
+use_collision = true
+collision_mask = 7
+size = Vector3(100, 3, 1)
+material = SubResource("StandardMaterial3D_1evy8")
+
+[node name="Wall4" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -50, 0, 0)
+use_collision = true
+collision_mask = 7
+size = Vector3(100, 3, 1)
+material = SubResource("StandardMaterial3D_sdeiq")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2883, 0, 0)
+use_collision = true
+collision_mask = 7
+size = Vector3(5, 1, 5)
+material = SubResource("StandardMaterial3D_oxhva")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2883, 0, -16.3414)
+use_collision = true
+collision_mask = 7
+radius = 5.0
+height = 3.0
+sides = 5
+material = SubResource("StandardMaterial3D_76rb5")

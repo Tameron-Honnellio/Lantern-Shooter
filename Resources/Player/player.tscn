@@ -14,12 +14,13 @@ collision_mask = 5
 script = ExtResource("1_7iip5")
 
 [node name="Head" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57567, 0)
 
 [node name="Lantern" parent="Head/Camera3D" instance=ExtResource("2_k6dko")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.422261, -0.0967321, -0.433233)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.422261, -0.0967321, -0.433233)
 
 [node name="Body" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
