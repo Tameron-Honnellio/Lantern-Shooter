@@ -3,13 +3,19 @@ using System;
 
 public partial class Player : CharacterBody3D
 {
-	public const float Speed = 5.0f;
+	// player walk speed
+	[Export]
+	public const float Speed = 15.0f;
+	// player jump speed
+	[Export]
 	public const float JumpVelocity = 4.5f;
-	public const float lookSensitivity = 0.02f;
+	[Export]
+	public const float lookSensitivity = 0.005f;
 
-	// Get the gravity from the project settings to be synced with RigidBody nodes.
-	public float gravity = ProjectSettings.GetSetting("physics/3d/default_gravity").AsSingle();
+	// gravity variable for the player character
+	public float gravity = 9.8f;
 	Node3D head;
+	// camera variable for controlling rotations from user input
 	Camera3D camera;
 
 	// accumulators
@@ -41,6 +47,9 @@ public partial class Player : CharacterBody3D
 			head.RotateY(-mouseMotion.Relative.X * lookSensitivity);
 			camera.RotateX(-mouseMotion.Relative.Y * lookSensitivity);
 			//camera.Rotation.X = Mathf.Clamp();
+			Vector3 cameraRot = camera.RotationDegrees;
+			cameraRot.X = Mathf.Clamp(cameraRot.X, -40, 70);
+			camera.RotationDegrees = cameraRot;
 		}
 	}
 
@@ -53,13 +62,13 @@ public partial class Player : CharacterBody3D
 			velocity.Y -= gravity * (float)delta;
 
 		// Handle Jump.
-		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
+		if (Input.IsActionJustPressed("jump") && IsOnFloor())
 			velocity.Y = JumpVelocity;
 
 		// Get the input direction and handle the movement/deceleration.
 		// As good practice, you should replace UI actions with custom gameplay actions.
-		Vector2 inputDir = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-		Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
+		Vector2 inputDir = Input.GetVector("left", "right", "up", "down");
+		Vector3 direction = (head.Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
 		if (direction != Vector3.Zero)
 		{
 			velocity.X = direction.X * Speed;

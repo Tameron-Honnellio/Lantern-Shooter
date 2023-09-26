@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://73x7d8v2aeoi"]
+[gd_scene load_steps=5 format=3 uid="uid://73x7d8v2aeoi"]
 
 [ext_resource type="Script" path="res://Resources/Player/Player.cs" id="1_7iip5"]
+[ext_resource type="PackedScene" uid="uid://dgjx66xxagewf" path="res://Resources/Player/lantern.tscn" id="2_k6dko"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_yo7ma"]
 
@@ -12,15 +13,19 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_7iip5")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_yo7ma")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("ConvexPolygonShape3D_iccap")
-
 [node name="Head" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57567, 0)
+
+[node name="Lantern" parent="Head/Camera3D" instance=ExtResource("2_k6dko")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.422261, -0.0967321, -0.433233)
+
+[node name="Body" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+cast_shadow = 0
+mesh = SubResource("CapsuleMesh_yo7ma")
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("ConvexPolygonShape3D_iccap")
