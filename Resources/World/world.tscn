@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://ctg2xilv2uhps"]
+[gd_scene load_steps=15 format=3 uid="uid://ctg2xilv2uhps"]
 
 [ext_resource type="Script" path="res://Resources/World/World.cs" id="1_a70xb"]
 [ext_resource type="PackedScene" uid="uid://73x7d8v2aeoi" path="res://Resources/Player/player.tscn" id="2_iqxa3"]
 [ext_resource type="PackedScene" uid="uid://d1hn2nbaa6h8" path="res://Resources/Enemy/skeleton.gltf" id="3_rbold"]
+[ext_resource type="PackedScene" uid="uid://b4lpuugvug7hg" path="res://Resources/Enemy/skeleton.tscn" id="4_lnqnb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_232yn"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -103,3 +104,6 @@ material = SubResource("StandardMaterial3D_76rb5")
 
 [node name="skeleton" parent="." instance=ExtResource("3_rbold")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.73149, 0, 0)
+
+[node name="skeleton2" parent="." instance=ExtResource("4_lnqnb")]
+transform = Transform3D(-0.965586, 0, -0.260083, 0, 1, 0, 0.260083, 0, -0.965586, 5.36972, -0.509712, 2.83544)
