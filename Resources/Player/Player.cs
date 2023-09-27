@@ -11,27 +11,34 @@ public partial class Player : CharacterBody3D
 	public const float JumpVelocity = 4.5f;
 	// Camera sensitivity, exported to editor
 	[Export]
-	public const float lookSensitivity = 0.005f;
+	public const float LookSensitivity = 0.005f;
 
 	// Gravity field for the player character, exported to editor
 	[Export]
-	public const float gravity = 9.8f;
+	public const float Gravity = 9.8f;
+	[Export]
+	public const float BaseFOV = 75f;
+	[Export]
+	public const float AimFov = 20f;
+
 	// Node3D field for controlling rotations from user input (left and right)
-	Node3D head;
+	public Node3D head;
 	// Camera3D field for controlling rotations from user input (up and down)
-	Camera3D camera;
+	public Camera3D camera;
 	// Helper field for clamping camera rotation
-	Vector3 cameraRot;
-	// AnimationPlayer field for playing the shoot animation
-	AnimationPlayer shootAnim;
+	public Vector3 cameraRot;
+	// AnimationPlayer fields for playing the shoot and aim animations
+	public AnimationPlayer shootAnim;
+	public AnimationPlayer aimInAnim;
+	public AnimationPlayer aimOutAnim;
 	// RayCast3D field for the lantern's bullet spawnpoint
-	RayCast3D bulletSpawn;
+	public RayCast3D bulletSpawn;
 	// Field for loading and holding the bullet scene
-	PackedScene bulletLoad;
+	public PackedScene bulletLoad;
 	// Field for instantiating and adding a new bullet to the scene tree
-	bullet newBullet;
+	public bullet newBullet;
 	// Field to help set global rotation of bullet
-	Transform3D bulletRotHelp;
+	public Transform3D bulletRotHelp;
 
 	// Called when node enters scene tree for the first time
     public override void _Ready()
@@ -42,8 +49,10 @@ public partial class Player : CharacterBody3D
 		head = GetNode<Node3D>("Head");
 		// Set camera to Camera3D node in player scene
 		camera = GetNode<Camera3D>("Head/Camera3D");
-		// Set shootAnim to AnimationPlayer node in lantern scene
+		// Set shootAnim, and both aimAnims to AnimationPlayer node in lantern scene
 		shootAnim = GetNode<AnimationPlayer>("Head/Camera3D/Lantern/AnimationPlayer");
+		aimInAnim = GetNode<AnimationPlayer>("Head/Camera3D/Lantern/AnimationPlayer");
+		aimOutAnim = GetNode<AnimationPlayer>("Head/Camera3D/Lantern/AnimationPlayer");
 		// Set bulletSpawn to RayCast3D node in the lantern scene
 		bulletSpawn = GetNode<RayCast3D>("Head/Camera3D/Lantern/RayCast3D");
 		// Store bullet.tscn PackedScene in bulletLoad field
@@ -56,9 +65,9 @@ public partial class Player : CharacterBody3D
 		if (@event is InputEventMouseMotion mouseMotion)
 		{
 			// Rotate head left and right about the y-axis
-			head.RotateY(-mouseMotion.Relative.X * lookSensitivity);
+			head.RotateY(-mouseMotion.Relative.X * LookSensitivity);
 			// Rotate camera up and down about the x-axis
-			camera.RotateX(-mouseMotion.Relative.Y * lookSensitivity);
+			camera.RotateX(-mouseMotion.Relative.Y * LookSensitivity);
 			// Clamp camera angle between -40 down and 70 degrees up
 			cameraRot = camera.RotationDegrees;
 			cameraRot.X = Mathf.Clamp(cameraRot.X, -40, 70);
@@ -79,7 +88,7 @@ public partial class Player : CharacterBody3D
 
 		// Add the gravity.
 		if (!IsOnFloor())
-			velocity.Y -= gravity * (float)delta;
+			velocity.Y -= Gravity * (float)delta;
 
 		// Handle Jump.
 		if (Input.IsActionJustPressed("jump") && IsOnFloor())
@@ -116,6 +125,21 @@ public partial class Player : CharacterBody3D
 				// Add bullet to the parent scene of player (level / world)
 				GetParent().AddChild(newBullet);
 			}
+		}
+		// Check if the player tried to aim
+		if (Input.IsActionJustPressed("aim")) {
+			// Play aim in animation
+			aimInAnim.Play("AimIn");
+			// Zoom in FOV
+			// Lerp to smoothly move camera
+			camera.Fov = Mathf.Lerp(camera.Fov, AimFov, (float)(delta * 8.0));
+		}
+		// Check if the player released aim
+		if (Input.IsActionJustReleased("aim")) {
+			// Play aim out animation
+			aimInAnim.Play("AimOut");
+			// Zoom out FOV
+			camera.Fov = BaseFOV;
 		}
 
 		// Move characterbody with respect to new velocity

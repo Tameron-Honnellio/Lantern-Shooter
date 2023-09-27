@@ -23,6 +23,7 @@ mesh = SubResource("SphereMesh_0juy6")
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.110584)
 target_position = Vector3(0, 0, -0.5)
+collision_mask = 5
 collide_with_areas = true
 
 [node name="bulletDespawn" type="Timer" parent="."]
