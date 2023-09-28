@@ -10,21 +10,25 @@ emission_energy_multiplier = 5.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_0juy6"]
 material = SubResource("StandardMaterial3D_5wcf1")
-radius = 0.2
-height = 0.4
+radius = 0.1
+height = 0.2
 
 [node name="Bullet" type="Node3D"]
 script = ExtResource("1_n7nxm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 3
 cast_shadow = 0
 mesh = SubResource("SphereMesh_0juy6")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.110584)
-target_position = Vector3(0, 0, -0.5)
-collision_mask = 5
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0772286)
+target_position = Vector3(0, 0, -0.3)
+collision_mask = 9
+hit_from_inside = true
 collide_with_areas = true
+collide_with_bodies = false
+debug_shape_thickness = 5
 
 [node name="bulletDespawn" type="Timer" parent="."]
 wait_time = 3.0

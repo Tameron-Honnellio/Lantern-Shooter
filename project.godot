@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Lantern-Shooter"
-run/main_scene="res://Resources/World/World.tscn"
+run/main_scene="res://Resources/World/world.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -67,6 +67,8 @@ aim={
 3d_render/layer_1="World"
 3d_render/layer_2="Player"
 3d_render/layer_3="Enemy"
+3d_render/layer_4="Bullets"
 3d_physics/layer_1="World"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Enemy"
+3d_physics/layer_4="Bullets"

@@ -177,8 +177,10 @@ height = 0.15
 material = SubResource("StandardMaterial3D_0olh6")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.30424e-08, -0.447106, -0.377961)
-target_position = Vector3(0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.50138e-08, -0.447106, -0.286125)
+target_position = Vector3(0, 0, -0.1)
+collision_mask = 0
+collide_with_bodies = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

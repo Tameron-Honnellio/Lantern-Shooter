@@ -32,6 +32,13 @@ public partial class bullet : Node3D
 		Position += Transform.Basis * bulletPosVector * (float)delta;
 		// If bullet collides with something
 		if (ray.IsColliding()) {
+			// If object ray is colliding with is in the enemy group
+			// ray.GetCollider is cast as type bodyPart because the 
+				// IsInGroup and Hit methods are not inherited by RayCast3D in C#
+			if (((bodyPart)ray.GetCollider()).IsInGroup("enemy")) {
+				// The bodypart is hit and signal is emitted
+				((bodyPart)ray.GetCollider()).Hit();
+			}
 			// Delete the bullet
 			QueueFree();
 		}

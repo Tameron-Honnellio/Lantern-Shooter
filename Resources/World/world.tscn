@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://ctg2xilv2uhps"]
+[gd_scene load_steps=14 format=3 uid="uid://bvp4kksvaugrw"]
 
-[ext_resource type="Script" path="res://Resources/World/World.cs" id="1_a70xb"]
-[ext_resource type="PackedScene" uid="uid://73x7d8v2aeoi" path="res://Resources/Player/player.tscn" id="2_iqxa3"]
-[ext_resource type="PackedScene" uid="uid://d1hn2nbaa6h8" path="res://Resources/Enemy/skeleton.gltf" id="3_rbold"]
-[ext_resource type="PackedScene" uid="uid://b4lpuugvug7hg" path="res://Resources/Enemy/skeleton.tscn" id="4_lnqnb"]
+[ext_resource type="Script" path="res://Resources/World/world.cs" id="1_1whk4"]
+[ext_resource type="PackedScene" uid="uid://73x7d8v2aeoi" path="res://Resources/Player/player.tscn" id="2_u1gip"]
+[ext_resource type="PackedScene" uid="uid://b4lpuugvug7hg" path="res://Resources/Enemy/skeleton.tscn" id="4_djfim"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_232yn"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -39,8 +38,8 @@ albedo_color = Color(0.407843, 0.556863, 0.788235, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76rb5"]
 albedo_color = Color(0.494118, 0.737255, 0.47451, 1)
 
-[node name="World" type="Node"]
-script = ExtResource("1_a70xb")
+[node name="world" type="Node"]
+script = ExtResource("1_1whk4")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 22, 0)
@@ -52,58 +51,83 @@ environment = SubResource("Environment_h3obc")
 [node name="Ground" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 use_collision = true
-collision_mask = 6
+collision_mask = 14
 size = Vector3(100, 1, 100)
 material = SubResource("StandardMaterial3D_m18o6")
 
-[node name="Player" parent="." instance=ExtResource("2_iqxa3")]
+[node name="Player" parent="." instance=ExtResource("2_u1gip")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.470703, 0)
 
 [node name="Wall" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
 use_collision = true
-collision_mask = 7
+collision_mask = 14
 size = Vector3(100, 3, 1)
 material = SubResource("StandardMaterial3D_a6il7")
 
 [node name="Wall2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
 use_collision = true
-collision_mask = 7
+collision_mask = 14
 size = Vector3(100, 3, 1)
 material = SubResource("StandardMaterial3D_5hr3r")
 
 [node name="Wall3" type="CSGBox3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 50, 0, 0)
 use_collision = true
-collision_mask = 7
+collision_mask = 14
 size = Vector3(100, 3, 1)
 material = SubResource("StandardMaterial3D_1evy8")
 
 [node name="Wall4" type="CSGBox3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -50, 0, 0)
 use_collision = true
-collision_mask = 7
+collision_mask = 14
 size = Vector3(100, 3, 1)
 material = SubResource("StandardMaterial3D_sdeiq")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2883, 0, 0)
 use_collision = true
-collision_mask = 7
+collision_mask = 14
 size = Vector3(5, 1, 5)
 material = SubResource("StandardMaterial3D_oxhva")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2883, 0, -16.3414)
 use_collision = true
-collision_mask = 7
+collision_mask = 14
 radius = 5.0
 height = 3.0
 sides = 5
 material = SubResource("StandardMaterial3D_76rb5")
 
-[node name="skeleton" parent="." instance=ExtResource("3_rbold")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.73149, 0, 0)
+[node name="skeleton2" parent="." instance=ExtResource("4_djfim")]
+transform = Transform3D(-0.965586, 0, -0.260083, 0, 1, 0, 0.260083, 0, -0.965586, 7.40843, -0.501819, 2.83544)
 
-[node name="skeleton2" parent="." instance=ExtResource("4_lnqnb")]
+[node name="skeleton3" parent="." instance=ExtResource("4_djfim")]
 transform = Transform3D(-0.965586, 0, -0.260083, 0, 1, 0, 0.260083, 0, -0.965586, 5.36972, -0.509712, 2.83544)
+
+[node name="skeleton4" parent="." instance=ExtResource("4_djfim")]
+transform = Transform3D(-0.965586, 0, -0.260083, 0, 1, 0, 0.260083, 0, -0.965586, 9.74499, -0.509712, 2.83544)
+
+[node name="skeleton5" parent="." instance=ExtResource("4_djfim")]
+transform = Transform3D(-0.965586, 0, -0.260083, 0, 1, 0, 0.260083, 0, -0.965586, 3.11205, -0.509712, 2.83544)
+
+[node name="skeleton6" parent="." instance=ExtResource("4_djfim")]
+transform = Transform3D(-0.965586, 0, -0.260083, 0, 1, 0, 0.260083, 0, -0.965586, 1.02758, -0.509712, 2.83544)
+
+[node name="skeleton7" parent="." instance=ExtResource("4_djfim")]
+transform = Transform3D(-0.965586, 0, -0.260083, 0, 1, 0, 0.260083, 0, -0.965586, -1.16124, -0.509712, 2.83544)
+
+[node name="skeleton8" parent="." instance=ExtResource("4_djfim")]
+transform = Transform3D(-0.965586, 0, -0.260083, 0, 1, 0, 0.260083, 0, -0.965586, -3.87809, -0.509712, 2.83544)
+
+[node name="skeleton9" parent="." instance=ExtResource("4_djfim")]
+transform = Transform3D(-0.965586, 0, -0.260083, 0, 1, 0, 0.260083, 0, -0.965586, -6.22824, -0.509712, 2.83544)
+
+[node name="skeleton10" parent="." instance=ExtResource("4_djfim")]
+transform = Transform3D(-0.965586, 0, -0.260083, 0, 1, 0, 0.260083, 0, -0.965586, -8.15358, -0.509712, 2.83544)
+
+[node name="skeleton11" parent="." instance=ExtResource("4_djfim")]
+transform = Transform3D(-0.965586, 0, -0.260083, 0, 1, 0, 0.260083, 0, -0.965586, -10.0802, -0.509712, 2.83544)
