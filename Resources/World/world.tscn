@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://bvp4kksvaugrw"]
+[gd_scene load_steps=15 format=3 uid="uid://bvp4kksvaugrw"]
 
 [ext_resource type="Script" path="res://Resources/World/world.cs" id="1_1whk4"]
 [ext_resource type="PackedScene" uid="uid://73x7d8v2aeoi" path="res://Resources/Player/player.tscn" id="2_u1gip"]
+[ext_resource type="PackedScene" uid="uid://bwea0atpb0j8s" path="res://Resources/World/ui.tscn" id="3_hv753"]
 [ext_resource type="PackedScene" uid="uid://b4lpuugvug7hg" path="res://Resources/Enemy/skeleton.tscn" id="4_djfim"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_232yn"]
@@ -54,6 +55,8 @@ use_collision = true
 collision_mask = 14
 size = Vector3(100, 1, 100)
 material = SubResource("StandardMaterial3D_m18o6")
+
+[node name="UI" parent="." instance=ExtResource("3_hv753")]
 
 [node name="Player" parent="." instance=ExtResource("2_u1gip")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.470703, 0)

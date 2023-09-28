@@ -36,7 +36,7 @@ public partial class bullet : Node3D
 			// ray.GetCollider is cast as type bodyPart because the 
 				// IsInGroup and Hit methods are not inherited by RayCast3D in C#
 			if (((bodyPart)ray.GetCollider()).IsInGroup("enemy")) {
-				// The bodypart is hit and signal is emitted
+				// The bodypart is hit and update score and signals are emitted
 				((bodyPart)ray.GetCollider()).Hit();
 			}
 			// Delete the bullet

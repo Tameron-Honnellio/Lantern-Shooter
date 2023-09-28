@@ -26,7 +26,7 @@ public partial class Player : CharacterBody3D
 	// Camera3D field for controlling rotations from user input (up and down)
 	public Camera3D camera;
 	// Helper field for clamping camera rotation
-	public Vector3 cameraRot;
+	public Vector3 cameraRotHelp;
 	// AnimationPlayer fields for playing the shoot and aim animations
 	public AnimationPlayer shootAnim;
 	public AnimationPlayer aimInAnim;
@@ -69,9 +69,9 @@ public partial class Player : CharacterBody3D
 			// Rotate camera up and down about the x-axis
 			camera.RotateX(-mouseMotion.Relative.Y * LookSensitivity);
 			// Clamp camera angle between -40 down and 70 degrees up
-			cameraRot = camera.RotationDegrees;
-			cameraRot.X = Mathf.Clamp(cameraRot.X, -40, 70);
-			camera.RotationDegrees = cameraRot;
+			cameraRotHelp = camera.RotationDegrees;
+			cameraRotHelp.X = Mathf.Clamp(cameraRotHelp.X, -40, 70);
+			camera.RotationDegrees = cameraRotHelp;
 		}
 
 		// Check if player pressed escape
