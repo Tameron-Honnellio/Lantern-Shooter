@@ -43,7 +43,6 @@ public partial class highscoremenu : Control
 			if (parseResult != Error.Ok) {
 				GD.Print($"JSON Parse Error: {json.GetErrorMessage()} in {jsonString} at line {json.GetErrorLine()}");
 			}
-			GD.Print("JSON DATA: ", (int)json.Data);
 			scoreList.Add((int)json.Data);
 		}
 		while (scoreList.Count < capacity) {
