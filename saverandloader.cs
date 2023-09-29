@@ -10,6 +10,9 @@ public partial class saverandloader : Node
 	public void SaveGame()
 	{
 		using var saveGame = FileAccess.Open("user://savegame.save", FileAccess.ModeFlags.ReadWrite);
+		if (saveGame == null) {
+			GD.Print(FileAccess.GetOpenError());
+		}
 
 		var saveNodes = GetTree().GetNodesInGroup("Persist");
 		foreach (Node saveNode in saveNodes)
