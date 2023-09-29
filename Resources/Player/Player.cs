@@ -39,6 +39,7 @@ public partial class Player : CharacterBody3D
 	public bullet newBullet;
 	// Field to help set global rotation of bullet
 	public Transform3D bulletRotHelp;
+	private saverandloader saver;
 
 	// Called when node enters scene tree for the first time
     public override void _Ready()
@@ -57,6 +58,7 @@ public partial class Player : CharacterBody3D
 		bulletSpawn = GetNode<RayCast3D>("Head/Camera3D/Lantern/RayCast3D");
 		// Store bullet.tscn PackedScene in bulletLoad field
 		bulletLoad = (PackedScene)ResourceLoader.Load("res://Resources/Player/bullet.tscn");
+		saver = GetNode<saverandloader>("/root/Saverandloader");
     }
 	// Called when input is detected
     public override void _Input(InputEvent @event)
@@ -140,6 +142,10 @@ public partial class Player : CharacterBody3D
 			aimInAnim.Play("AimOut");
 			// Zoom out FOV
 			camera.Fov = BaseFOV;
+		}
+
+		if (Input.IsActionJustReleased("save")) {
+			saver.SaveGame();
 		}
 
 		// Move characterbody with respect to new velocity

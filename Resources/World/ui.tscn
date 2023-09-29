@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Resources/World/UI.cs" id="1_hyc66"]
 
-[node name="UI" type="Control"]
+[node name="UI" type="Control" groups=["Persist"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,3 +15,4 @@ script = ExtResource("1_hyc66")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_font_sizes/font_size = 30

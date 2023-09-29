@@ -5,6 +5,8 @@ public partial class UI : Control
 {
 	// Field to keep track of and save player score
 	public int playerScore = 0;
+	// Field to set label text
+	public String labelText;
 	// Label field to update score text on UI
 	public Label scorelabel;
 	private CustomSignals scoreSignal;
@@ -23,11 +25,16 @@ public partial class UI : Control
 	public override void _Process(double delta)
 	{
 		// Change text in scoreLabel to match playerScore
-		scorelabel.Text = GD.VarToStr(playerScore);
+		labelText = "Score: " + GD.VarToStr(playerScore);
+		scorelabel.Text = labelText;
 	}
 
 	public void updatePlayerScore(int scoreVal) {
 		// Increase player score
 		playerScore += scoreVal;
+	}
+
+	public double Save() {
+		return (double)playerScore;
 	}
 }
