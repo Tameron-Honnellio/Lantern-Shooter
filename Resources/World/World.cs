@@ -13,7 +13,6 @@ public partial class world : Node
 		gameOver = (PackedScene)ResourceLoader.Load("res://Resources/World/gameovermenu.tscn");
 		playerWon = GetNode<CustomSignals>("/root/CustomSignals");
 		saver = GetNode<saverandloader>("/root/Saverandloader");
-		// Save game when game ends, before transition to gameover
 		// saver.SaveGame();
 	}
 
@@ -23,6 +22,7 @@ public partial class world : Node
 		if (Input.IsActionJustPressed("endgame")) {
 			playerWon.setWon(false);
 			Input.MouseMode = Input.MouseModeEnum.Visible;
+			// Save game when game ends, before transition to gameover
 			saver.SaveGame();
 			GetTree().ChangeSceneToPacked(gameOver);
 		}

@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=3 uid="uid://bvp4kksvaugrw"]
 
-[ext_resource type="Script" path="res://Resources/World/world.cs" id="1_1whk4"]
-[ext_resource type="PackedScene" uid="uid://73x7d8v2aeoi" path="res://Resources/Player/player.tscn" id="2_u1gip"]
-[ext_resource type="PackedScene" uid="uid://bwea0atpb0j8s" path="res://Resources/World/ui.tscn" id="3_hv753"]
-[ext_resource type="PackedScene" uid="uid://b4lpuugvug7hg" path="res://Resources/Enemy/skeleton.tscn" id="4_djfim"]
+[ext_resource type="Script" path="res://Resources/World/world.cs" id="1_1emuw"]
+[ext_resource type="PackedScene" uid="uid://bwea0atpb0j8s" path="res://Resources/World/ui.tscn" id="2_7o0l5"]
+[ext_resource type="PackedScene" uid="uid://73x7d8v2aeoi" path="res://Resources/Player/Player.tscn" id="3_s8ves"]
+[ext_resource type="PackedScene" uid="uid://b4lpuugvug7hg" path="res://Resources/Enemy/skeleton.tscn" id="4_vdbut"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_232yn"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -40,7 +40,7 @@ albedo_color = Color(0.407843, 0.556863, 0.788235, 1)
 albedo_color = Color(0.494118, 0.737255, 0.47451, 1)
 
 [node name="world" type="Node"]
-script = ExtResource("1_1whk4")
+script = ExtResource("1_1emuw")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 22, 0)
@@ -56,9 +56,9 @@ collision_mask = 14
 size = Vector3(100, 1, 100)
 material = SubResource("StandardMaterial3D_m18o6")
 
-[node name="UI" parent="." instance=ExtResource("3_hv753")]
+[node name="UI" parent="." instance=ExtResource("2_7o0l5")]
 
-[node name="Player" parent="." instance=ExtResource("2_u1gip")]
+[node name="Player" parent="." instance=ExtResource("3_s8ves")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.470703, 0)
 
 [node name="Wall" type="CSGBox3D" parent="."]
@@ -105,32 +105,32 @@ height = 3.0
 sides = 5
 material = SubResource("StandardMaterial3D_76rb5")
 
-[node name="skeleton2" parent="." instance=ExtResource("4_djfim")]
+[node name="skeleton2" parent="." instance=ExtResource("4_vdbut")]
 transform = Transform3D(-0.965586, 0, -0.260083, 0, 1, 0, 0.260083, 0, -0.965586, 7.40843, -0.501819, 2.83544)
 
-[node name="skeleton3" parent="." instance=ExtResource("4_djfim")]
+[node name="skeleton3" parent="." instance=ExtResource("4_vdbut")]
 transform = Transform3D(-0.965586, 0, -0.260083, 0, 1, 0, 0.260083, 0, -0.965586, 5.36972, -0.509712, 2.83544)
 
-[node name="skeleton4" parent="." instance=ExtResource("4_djfim")]
+[node name="skeleton4" parent="." instance=ExtResource("4_vdbut")]
 transform = Transform3D(-0.965586, 0, -0.260083, 0, 1, 0, 0.260083, 0, -0.965586, 9.74499, -0.509712, 2.83544)
 
-[node name="skeleton5" parent="." instance=ExtResource("4_djfim")]
+[node name="skeleton5" parent="." instance=ExtResource("4_vdbut")]
 transform = Transform3D(-0.965586, 0, -0.260083, 0, 1, 0, 0.260083, 0, -0.965586, 3.11205, -0.509712, 2.83544)
 
-[node name="skeleton6" parent="." instance=ExtResource("4_djfim")]
+[node name="skeleton6" parent="." instance=ExtResource("4_vdbut")]
 transform = Transform3D(-0.965586, 0, -0.260083, 0, 1, 0, 0.260083, 0, -0.965586, 1.02758, -0.509712, 2.83544)
 
-[node name="skeleton7" parent="." instance=ExtResource("4_djfim")]
+[node name="skeleton7" parent="." instance=ExtResource("4_vdbut")]
 transform = Transform3D(-0.965586, 0, -0.260083, 0, 1, 0, 0.260083, 0, -0.965586, -1.16124, -0.509712, 2.83544)
 
-[node name="skeleton8" parent="." instance=ExtResource("4_djfim")]
+[node name="skeleton8" parent="." instance=ExtResource("4_vdbut")]
 transform = Transform3D(-0.965586, 0, -0.260083, 0, 1, 0, 0.260083, 0, -0.965586, -3.87809, -0.509712, 2.83544)
 
-[node name="skeleton9" parent="." instance=ExtResource("4_djfim")]
+[node name="skeleton9" parent="." instance=ExtResource("4_vdbut")]
 transform = Transform3D(-0.965586, 0, -0.260083, 0, 1, 0, 0.260083, 0, -0.965586, -6.22824, -0.509712, 2.83544)
 
-[node name="skeleton10" parent="." instance=ExtResource("4_djfim")]
+[node name="skeleton10" parent="." instance=ExtResource("4_vdbut")]
 transform = Transform3D(-0.965586, 0, -0.260083, 0, 1, 0, 0.260083, 0, -0.965586, -8.15358, -0.509712, 2.83544)
 
-[node name="skeleton11" parent="." instance=ExtResource("4_djfim")]
+[node name="skeleton11" parent="." instance=ExtResource("4_vdbut")]
 transform = Transform3D(-0.965586, 0, -0.260083, 0, 1, 0, 0.260083, 0, -0.965586, -10.0802, -0.509712, 2.83544)

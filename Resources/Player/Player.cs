@@ -144,10 +144,6 @@ public partial class Player : CharacterBody3D
 			camera.Fov = BaseFOV;
 		}
 
-		if (Input.IsActionJustReleased("save")) {
-			saver.SaveGame();
-		}
-
 		// Move characterbody with respect to new velocity
 		MoveAndSlide();
 	}
