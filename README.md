@@ -11,6 +11,8 @@ Sources of Help:
 https://docs.godotengine.org/en/stable/index.html
 https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/tutorials/
 https://www.tutorialspoint.com/csharp/index.htm
+https://www.youtube.com/playlist?list=PLQZiuyZoMHcgqP-ERsVE4x4JSFojLdcBZ
+
 
 
 Assets: 
@@ -21,6 +23,6 @@ Environment and target models provided by Stark Crafts
 Tools Used:
 Godot 4.1.1 Mono - Game engine with C# compatibility
 VSCode - Code editor and debugger
-Itch.io - Asset store
+Itch.io - Asset store / Game publish
 Blender - Model file conversion
 Github - Version control
