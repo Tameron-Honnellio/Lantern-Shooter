@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://cigg2yndn8oef"]
+
+[ext_resource type="Script" path="res://Resources/World/Levels/level_02.cs" id="1_4jfqi"]
+[ext_resource type="Texture2D" uid="uid://dhbisikjwkoqw" path="res://Resources/World/LevelModels/littleRock_stone.png" id="1_ffbrg"]
+[ext_resource type="PackedScene" uid="uid://bwea0atpb0j8s" path="res://Resources/World/ui.tscn" id="1_unndl"]
+[ext_resource type="PackedScene" uid="uid://73x7d8v2aeoi" path="res://Resources/Player/player.tscn" id="2_vty24"]
+[ext_resource type="PackedScene" uid="uid://b4lpuugvug7hg" path="res://Resources/Enemy/skeleton.tscn" id="4_fy31i"]
+
+[sub_resource type="Environment" id="Environment_wlvya"]
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0289
+volumetric_fog_albedo = Color(0.207843, 0.439216, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_to56i"]
+albedo_texture = ExtResource("1_ffbrg")
+
+[node name="Level_02" type="Node3D"]
+script = ExtResource("1_4jfqi")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 3.72112, 42.3059, -33.9122)
+light_color = Color(0.945098, 0.752941, 0.729412, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wlvya")
+
+[node name="Ground" type="CSGBox3D" parent="."]
+use_collision = true
+collision_mask = 14
+size = Vector3(100, 0.002, 100)
+material = SubResource("StandardMaterial3D_to56i")
+
+[node name="UI" parent="." instance=ExtResource("1_unndl")]
+
+[node name="Player" parent="." instance=ExtResource("2_vty24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -43.3151)
+
+[node name="skeleton" parent="." instance=ExtResource("4_fy31i")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)

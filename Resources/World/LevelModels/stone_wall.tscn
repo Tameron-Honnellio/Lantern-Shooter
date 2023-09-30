@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnkaxofr2r3vn"]
+
+[ext_resource type="PackedScene" uid="uid://b2gwwaj0dtb4d" path="res://Resources/World/LevelModels/stoneWall.gltf" id="1_g0nj6"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_p1n5l"]
+points = PackedVector3Array(2.04821, 1, 0, 2.04821, -1, 0, 1.58147, 1, -0.414748, 1.58147, 1, 0.414748, 1.58147, -1, 0.414748, 1.58147, -1, -0.414748, -1.58187, 1, -0.414748, -1.58187, 1, 0.414748, -1.58187, -1, 0.414748, -1.58187, -1, -0.414748, -2.04821, 1, 0, -2.04821, -1, 0)
+
+[node name="stoneWall" instance=ExtResource("1_g0nj6")]
+collision_mask = 14
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(0.47775, 0, 0, 0, 0.47775, 0, 0, 0, 0.47775, 0, 0.473638, 0)
+shape = SubResource("ConvexPolygonShape3D_p1n5l")

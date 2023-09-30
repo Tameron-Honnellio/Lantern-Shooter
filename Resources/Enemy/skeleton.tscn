@@ -126,7 +126,7 @@ _data = {
 "Die": SubResource("Animation_3hh4w")
 }
 
-[node name="skeleton" type="CharacterBody3D"]
+[node name="skeleton" type="CharacterBody3D" groups=["target"]]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_55ruk")

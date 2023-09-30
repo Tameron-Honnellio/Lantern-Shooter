@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmadyijtrjv4e"]
+
+[ext_resource type="PackedScene" uid="uid://dw1rae86fn7sa" path="res://Resources/World/LevelModels/littleTree.gltf" id="1_oid7x"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vyslt"]
+
+[node name="littleTree" instance=ExtResource("1_oid7x")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9148, 0)
+shape = SubResource("CapsuleShape3D_vyslt")

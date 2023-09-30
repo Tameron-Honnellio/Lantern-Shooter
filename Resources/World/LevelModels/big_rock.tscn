@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7setmy655ucl"]
+
+[ext_resource type="PackedScene" uid="uid://dgfqjfvmtuboh" path="res://Resources/World/LevelModels/bigRock.gltf" id="1_gxnr6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o3jei"]
+
+[node name="bigRock" instance=ExtResource("1_gxnr6")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.167663, 0.473638, -0.262144)
+shape = SubResource("BoxShape3D_o3jei")

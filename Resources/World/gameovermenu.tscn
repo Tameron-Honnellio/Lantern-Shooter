@@ -23,11 +23,13 @@ layout_mode = 2
 
 [node name="winText" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "You win"
+text = "You win!
+Score: "
 
 [node name="loseText" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "You lose"
+text = "You lose.
+Score: "
 
 [node name="mainMenu" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2

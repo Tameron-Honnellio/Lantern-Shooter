@@ -10,6 +10,7 @@ public partial class UI : Control
 	// Label field to update score text on UI
 	public Label scorelabel;
 	private CustomSignals scoreSignal;
+	private CustomSignals globalScore;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -17,8 +18,10 @@ public partial class UI : Control
 		// Gain access to global custom signal bus
 		scorelabel = GetNode<Label>("ScoreLabel");
 		scoreSignal = GetNode<CustomSignals>("/root/CustomSignals");
+		globalScore = GetNode<CustomSignals>("/root/CustomSignals");
 		// Handle updateScore signal in updatePlayerScore()
 		scoreSignal.updateScore += updatePlayerScore;
+		playerScore = globalScore.getScore();
 		
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,9 +35,11 @@ public partial class UI : Control
 	public void updatePlayerScore(int scoreVal) {
 		// Increase player score
 		playerScore += scoreVal;
+		globalScore.setScore(playerScore);
 	}
 
 	public double Save() {
+		// return playerscore
 		return (double)playerScore;
 	}
 }

@@ -78,6 +78,8 @@ public partial class Player : CharacterBody3D
 
 		// Check if player pressed escape
 		if (Input.IsActionJustPressed("escape")) {
+			// Save game
+			saver.SaveGame();
 			// Quit game
 			GetTree().Quit();
 		}
