@@ -41,3 +41,6 @@ Tools Used:
 - Itch.io - Asset store
 - Blender - Model file conversion
 - Github - Version control
+
+Github Repository:
+- https://github.com/Tameron-Honnellio/Lantern-Shooter
