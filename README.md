@@ -13,6 +13,7 @@ or quit the game. Save data will be preserved across multiple play sessions.
 
 How to Play:
 - WASD to move
+- Space to jump
 - Mouse to move camera
 - Left-click to shoot lantern
 - Right-click to aim lantern (hold)
